@@ -23,13 +23,16 @@ const Navbar = () => {
         <Search />
         <p>Children</p>
         <Bell />
-        <div className="cursor-pointer flex items-center gap-2.5">
+        <div className="cursor-pointer group flex items-center gap-2.5 relative">
           <img className="w-[35px]" src={usericon} alt="" />
           <img
             className="filter invert brightness-0 saturate-100"
             src={caretdown}
             alt=""
           />
+          <div className="hidden absolute group-hover:block top-full right-0 w-max bg-[#191919] px-[18px] py-[22px] rounded-l-xs z-1 underline ">
+            <p className="cursor-pointer  text-[13px]">Sign Out of C-Nema</p>
+          </div>
         </div>
       </div>
     </nav>
