@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./Navbar.css";
 import logo from "../../public/my-c-nemalogo.png";
 import usericon from "../../public/netflix-usericon.png";
@@ -6,8 +6,22 @@ import caretdown from "../../public/caret_down.svg";
 import { Bell, ChevronDown, Search } from "lucide-react";
 
 const Navbar = () => {
+  const navRef = useRef();
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY >= 80) {
+        navRef.current.classList.add("nav-dark");
+      } else {
+        navRef.current.classList.remove("nav-dark");
+      }
+    });
+  });
   return (
-    <nav className="navbar w-full flex justify-between fixed text-[14px] text-[#e5e5e5] z-1   ">
+    <nav
+      ref={navRef}
+      className="navbar w-full flex justify-between fixed text-[14px] text-[#e5e5e5] z-1   "
+    >
       <div className="flex items-center gap-[50px]">
         <img className="w-10" src={logo} alt="" />
         <ul className="flex lis-none gap-5">
