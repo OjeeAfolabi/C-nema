@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import "./Login.css";
 import logo from "../../public/my-c-nemalogo.png";
+import {login, signup} from "../../firebase";
 
 const Login = () => {
   const [signState, setSignState] = useState("Sign In");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
   return (
     <div className="h-screen bg-[linear-gradient(#0000007e,#0000007e),url('/src/assets/background_banner.jpg')] py-5 px-[8%]">
       <img className="w-[100px] mb-0" src={logo} alt="" />

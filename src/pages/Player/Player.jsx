@@ -13,7 +13,7 @@ const Player = () => {
     published_at: "",
     type: "",
   });
-
+  const [loading, setLoading] = useState(true);
   const [exit, setExit] = useState(false);
 
   useEffect(() => {
@@ -25,14 +25,15 @@ const Player = () => {
           "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZmE5MjA1NDJlZWEzYzIxMTI4MTVhMjA2NzA4MjhkOCIsIm5iZiI6MTc2MjIxOTU0My43NDcsInN1YiI6IjY5MDk1NjE3Y2EzOTRiY2NiOGRiOTAxNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HS5lxH_ukkTnm6zkm_RamhTa6DNiLw9_FzZWLyA6RSY",
       },
     };
-
+    setLoading(true);
     fetch(
       `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
       options
     )
       .then((res) => res.json())
       .then((res) => setapiData(res.results[0]))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
   }, [id]);
 
   const handleBackClick = () => {
@@ -65,7 +66,10 @@ const Player = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
-            {apidata.key ? (
+            {loading ? (
+              <p className="text-lg">Loading...</p>
+            ) :
+            apidata.key ? (
               <iframe
                 className="w-[90%] h-[80%] rounded-[10px]"
                 src={`https://www.youtube.com/embed/${apidata.key}`}
