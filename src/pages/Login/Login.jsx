@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import "./Login.css";
 import logo from "../../public/my-c-nemalogo.png";
-import {login, signup} from "../../firebase";
+import { login, signup } from "../../firebase";
 
 const Login = () => {
   const [signState, setSignState] = useState("Sign In");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+
+  const userAuth = async (event) => {
+    event.preventDefault();
+    if (signState === "Sign In") {
+      await login;
+    } else {
+      await signup(name, email, password);
+    }
+  };
+
   return (
     <div className="h-screen bg-[linear-gradient(#0000007e,#0000007e),url('/src/assets/background_banner.jpg')] py-5 px-[8%]">
       <img className="w-[100px] mb-0" src={logo} alt="" />
@@ -22,6 +31,10 @@ const Login = () => {
               <input
                 type="text"
                 placeholder="Your name"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
                 className="w-full p-3 bg-[#333333] rounded text-white outline-none border-none"
               />
             ) : (
@@ -30,15 +43,27 @@ const Login = () => {
             <input
               type="email"
               placeholder="Email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
               className="w-full p-3 bg-[#333333] rounded text-white outline-none border-none"
             />
             <input
               type="password"
               placeholder="Password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               className="w-full p-3 bg-[#333333] rounded text-white outline-none border-none"
             />
           </div>
-          <button className="w-full p-4 bg-[#e50914] text-white rounded font-semibold mb-6 hover:bg-[#c11119]">
+          <button
+            type="submit"
+            onClick={userAuth}
+            className="w-full p-4 bg-[#e50914] text-white rounded font-semibold mb-6 hover:bg-[#c11119]"
+          >
             {signState}
           </button>
           <div className="flex justify-between items-center text-[#737373]">

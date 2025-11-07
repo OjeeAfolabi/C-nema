@@ -31,7 +31,13 @@ const Player = () => {
       options
     )
       .then((res) => res.json())
-      .then((res) => setapiData(res.results[0]))
+      .then((res) => {
+        if (res.results && res.results.length > 0) {
+          setapiData(res.results[0]);
+        } else {
+          setapiData(null);
+        }
+      })
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
   }, [id]);
@@ -68,23 +74,26 @@ const Player = () => {
           >
             {loading ? (
               <p className="text-lg">Loading...</p>
-            ) :
-            apidata.key ? (
-              <iframe
-                className="w-[90%] h-[80%] rounded-[10px]"
-                src={`https://www.youtube.com/embed/${apidata.key}`}
-                title={apidata.name}
-                frameBorder="0"
-                allowFullScreen
-              ></iframe>
+            ) : apidata ? (
+              <>
+                <iframe
+                  className="w-[90%] h-[80%] rounded-[10px]"
+                  src={`https://www.youtube.com/embed/${apidata.key}`}
+                  title={apidata.name}
+                  frameBorder="0"
+                  allowFullScreen
+                ></iframe>
+                <div className="flex items-center justify-between w-[90%] mt-4">
+                  <p>{apidata.published_at?.slice(0, 10)}</p>
+                  <p>{apidata.name}</p>
+                  <p>{apidata.type}</p>
+                </div>
+              </>
             ) : (
-              <p className="text-lg mt-4">No trailer available</p>
+              <p className="text-lg mt-4">
+                No trailer available for this movie
+              </p>
             )}
-            <div className="flex items-center justify-between w-[90%] mt-4">
-              <p>{apidata.published_at?.slice(0, 10)}</p>
-              <p>{apidata.name}</p>
-              <p>{apidata.type}</p>
-            </div>
           </motion.div>
         )}
       </AnimatePresence>

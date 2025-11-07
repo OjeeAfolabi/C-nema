@@ -6,17 +6,23 @@ import caretdown from "../../public/caret_down.svg";
 import { Bell, ChevronDown, Search } from "lucide-react";
 
 const Navbar = () => {
-  const navRef = useRef();
+  const navRef = useRef(null);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY >= 80) {
-        navRef.current.classList.add("nav-dark");
-      } else {
-        navRef.current.classList.remove("nav-dark");
+    const handleScroll = () => {
+      if (navRef.current) {
+        if (window.scrollY >= 80) {
+          navRef.current.classList.add("nav-dark");
+        } else {
+          navRef.current.classList.remove("nav-dark");
+        }
       }
-    });
-  });
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <nav
       ref={navRef}
@@ -24,7 +30,7 @@ const Navbar = () => {
     >
       <div className="flex items-center gap-[50px]">
         <img className="w-10" src={logo} alt="" />
-        <ul className="flex lis-none gap-5">
+        <ul className="flex list-none gap-5">
           <li className="cursor-pointer">Home</li>
           <li className="cursor-pointer">TV Shows</li>
           <li className="cursor-pointer">Movies</li>
