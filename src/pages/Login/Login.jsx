@@ -2,25 +2,33 @@ import React, { useState } from "react";
 import "./Login.css";
 import logo from "../../public/my-c-nemalogo.png";
 import { login, signup } from "../../firebase";
+import spinner from "../../assets/netflix_spinner.gif";
 
 const Login = () => {
   const [signState, setSignState] = useState("Sign In");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const userAuth = async (event) => {
     event.preventDefault();
+    setLoading(true);
     if (signState === "Sign In") {
-      await login;
+      await login(email, password);
     } else {
       await signup(name, email, password);
     }
+    setLoading(false);
   };
 
-  return (
-    <div className="h-screen bg-[linear-gradient(#0000007e,#0000007e),url('/src/assets/background_banner.jpg')] py-5 px-[8%]">
-      <img className="w-[100px] mb-0" src={logo} alt="" />
+  return loading ? (
+    <div className="h-screen w-full flex items-center justify-center">
+      <img className="w-[60px]" src={spinner} alt="" />
+    </div>
+  ) : (
+    <div className=" h-screen bg-[linear-gradient(#0000007e,#0000007e),url('/src/assets/background_banner.jpg')] py-5 px-[8%] xs:px-[5%] xs:py-[15px] ">
+      <img className="w-[100px] xs:w-[10px]  mb-0 " src={logo} alt="" />
       <div>
         <form className="w-full max-w-[450px] bg-[rgba(0,0,0,0.75)] rounded-sm p-[50px] m-auto">
           <h1 className="text-2xl font-semibold text-white mb-8">
@@ -62,7 +70,7 @@ const Login = () => {
           <button
             type="submit"
             onClick={userAuth}
-            className="w-full p-4 bg-[#e50914] text-white rounded font-semibold mb-6 hover:bg-[#c11119]"
+            className="w-full p-4 bg-[#e50914] text-white rounded font-semibold mb-6 hover:bg-[#c11119] cursor-pointer"
           >
             {signState}
           </button>

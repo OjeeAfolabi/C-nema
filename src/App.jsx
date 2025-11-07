@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+  import { ToastContainer } from "react-toastify";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import { Routes, Route, useNavigate } from "react-router-dom";
@@ -22,6 +23,7 @@ const App = () => {
 
   return (
     <div>
+      <ToastContainer theme="dark"/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

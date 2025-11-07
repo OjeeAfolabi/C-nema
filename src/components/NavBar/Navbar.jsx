@@ -4,6 +4,7 @@ import logo from "../../public/my-c-nemalogo.png";
 import usericon from "../../public/netflix-usericon.png";
 import caretdown from "../../public/caret_down.svg";
 import { Bell, ChevronDown, Search } from "lucide-react";
+import { logout } from "../../firebase";
 
 const Navbar = () => {
   const navRef = useRef(null);
@@ -26,7 +27,7 @@ const Navbar = () => {
   return (
     <nav
       ref={navRef}
-      className="navbar w-full flex justify-between fixed text-[14px] text-[#e5e5e5] z-1   "
+      className="navbar w-full flex justify-between fixed text-[14px] text-[#e5e5e5] z-1 xs:bg-red-500  "
     >
       <div className="flex items-center gap-[50px]">
         <img className="w-10" src={logo} alt="" />
@@ -50,8 +51,22 @@ const Navbar = () => {
             src={caretdown}
             alt=""
           />
-          <div className="hidden absolute group-hover:block top-full right-0 w-max bg-[#191919] px-[18px] py-[22px] rounded-l-xs z-1 underline ">
-            <p className="cursor-pointer  text-[13px]">Sign Out of C-Nema</p>
+          <div
+            className="  absolute top-full right-0 mt-1 w-max bg-[#191919] px-[18px] py-[22px] rounded-sm z-50
+    before:content-[''] before:absolute before:-top-3 before:left-0 before:w-full before:h-3
+    opacity-0 scale-95 translate-y-2 pointer-events-none
+    transition-all duration-200 ease-out
+    group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto
+ "
+          >
+            <p
+              onClick={() => {
+                logout();
+              }}
+              className="cursor-pointer  text-[13px] underline "
+            >
+              Sign Out of C-Nema
+            </p>
           </div>
         </div>
       </div>
