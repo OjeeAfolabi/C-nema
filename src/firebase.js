@@ -40,14 +40,16 @@ const signup = async (name, email, password) => {
 const login = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
+    toast.success("Login Successful");
   } catch (error) {
     console.log(error);
     toast.error(error.code.split("/")[1].replaceAll("-", " "));
   }
 };
 
-const logout = () => { 
+const logout = () => {
   signOut(auth);
+  toast.success("Logout Successful");
 };
 
 export { auth, db, login, signup, logout };

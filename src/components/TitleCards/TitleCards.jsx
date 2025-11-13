@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./TitleCards.css";
-import { Link } from "react-router-dom";
-// import cards_data from "../../assets/cards/Cards_data";
+import { Link, useNavigate } from "react-router-dom";
+import Cnema from "../CnemaLoader/Cnema";
 
 const TitleCards = ({ title, category }) => {
   const [apiData, setApiData] = useState([]);
+  const [loaderid, setLoaderid] = useState(null);
   const cardsRef = useRef();
+  const navigate = useNavigate();
 
   const options = {
     method: "GET",
@@ -19,6 +21,14 @@ const TitleCards = ({ title, category }) => {
   const handleWheel = (event) => {
     event.preventDefault();
     cardsRef.current.scrollLeft += event.deltaY;
+  };
+
+  const handleMovieClick = (id) => {
+    setLoaderid(id);
+    setTimeout(() => {
+      setLoaderid(null);
+      navigate(`/player/${id}`);
+    }, 2000);
   };
 
   useEffect(() => {
@@ -41,21 +51,28 @@ const TitleCards = ({ title, category }) => {
     >
       <h2 className="mb-2">{title ? title : "Popular on C-Nema"}</h2>
       <div ref={cardsRef} className="flex gap-2.5 card-list overflow-x-scroll">
-        {apiData.map((card, index) => {
-          return (
-            <Link to={`/player/${card.id}`} className="relative shrink-0 text-white" key={index}>
-              <img
-                className="w-60 rounded-sm cursor-pointer"
-                src={`https://image.tmdb.org/t/p/w500/` + card.backdrop_path}
-                alt=""
-              />
-              <p className="absolute bottom-2.5 right-2.5">  
-                {card.original_title}
-              </p>
-            </Link>
-          );
-        })}
+        {apiData.map((card, index) => (
+          <div
+            className="relative shrink-0 text-white"
+            key={index}
+            onClick={() => handleMovieClick(card.id)}
+          >
+            <img
+              className="w-60 rounded-sm cursor-pointer"
+              src={`https://image.tmdb.org/t/p/w500/` + card.backdrop_path}
+              alt=""
+            />
+            <p className="absolute bottom-2.5 right-2.5">
+              {card.original_title}
+            </p>
+          </div>
+        ))}
       </div>
+      {loaderid && (
+        <div className="fixed inset-0 bg-black flex justify-center items-center z-50">
+          <Cnema />
+        </div>
+      )}
     </div>
   );
 };

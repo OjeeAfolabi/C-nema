@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import "./Navbar.css";
-import logo from "../../public/my-c-nemalogo.png";
+// import logo from "../../public/my-c-nemalogo.png";
 import usericon from "../../public/netflix-usericon.png";
 import caretdown from "../../public/caret_down.svg";
-import { Bell, ChevronDown, Search } from "lucide-react";
+import { Bell, Search } from "lucide-react";
 import { logout } from "../../firebase";
 
 const Navbar = () => {
@@ -30,7 +30,10 @@ const Navbar = () => {
       className="navbar w-full flex justify-between fixed text-[14px] text-[#e5e5e5] z-1 xs:bg-red-500  "
     >
       <div className="flex items-center gap-[50px]">
-        <img className="w-10" src={logo} alt="" />
+        <p className="c-nema text-4xl font-medium bg-linear-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
+          C-NEMA
+        </p>
+        {/* <img className="w-10" src={logo} alt="" /> */}
         <ul className="flex list-none gap-5">
           <li className="cursor-pointer">Home</li>
           <li className="cursor-pointer">TV Shows</li>

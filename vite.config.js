@@ -10,8 +10,6 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
-
-
 export default defineConfig({
   plugins: [
     react(),
@@ -19,6 +17,7 @@ export default defineConfig({
       config: {
         theme: {
           extend: {},
+
           screens: {
             xs: { max: "500px" },
             sm: "640px",
@@ -30,4 +29,17 @@ export default defineConfig({
       },
     }),
   ],
+  server: {
+    fs: {
+      strict: false,
+    },
+    historyApiFallback: true, // This alone doesn't work directly in Vite
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
 });
