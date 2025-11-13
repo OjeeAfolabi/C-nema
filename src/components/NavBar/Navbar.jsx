@@ -26,10 +26,10 @@ const Navbar = () => {
   return (
     <nav
       ref={navRef}
-      className="navbar w-full flex justify-between fixed text-[14px] text-[#e5e5e5] z-1 xs:bg-red-500  "
+      className="navbar w-full flex justify-between fixed text-[14px] text-[#e5e5e5] z-1  "
     >
-      <div className="flex items-center gap-[50px]">
-        <p className="nav-logo text-4xl font-medium bg-linear-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent border-2 border-green-500">
+      <div className="nav-container flex items-center gap-[50px]">
+        <p className="nav-logo text-4xl font-medium bg-linear-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
           C-NEMA
         </p>
         <ul className="flex list-none gap-5 ul-left">
