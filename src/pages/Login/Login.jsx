@@ -27,10 +27,10 @@ const Login = () => {
       <img className="w-[60px]" src={spinner} alt="" />
     </div>
   ) : (
-    <div className=" h-screen bg-[linear-gradient(#0000007e,#0000007e),url('/src/assets/background_banner.jpg')] py-5 px-[8%] xs:px-[5%] xs:py-[15px] ">
+    <div className="login h-screen bg-[linear-gradient(#0000007e,#0000007e),url('/src/assets/background_banner.jpg')] py-5 px-[8%] ">
       <img className="w-[100px] xs:w-[10px]  mb-0 " src={logo} alt="" />
       <div>
-        <form className="w-full max-w-[450px] bg-[rgba(0,0,0,0.75)] rounded-sm p-[50px] m-auto">
+        <form className="login-form w-full max-w-[450px] bg-[rgba(0,0,0,0.75)] rounded-sm p-[50px] m-auto">
           <h1 className="text-2xl font-semibold text-white mb-8">
             {signState}
           </h1>

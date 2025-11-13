@@ -8,8 +8,8 @@ import { Copyright } from "lucide-react";
 
 const Footer = () => {
   return (
-    <div className=" py-[30px] px-[4%] max-w-[1000px] mx-auto">
-      <div className="flex gap-5 my-10">
+    <div className="footer py-[30px] px-[4%] max-w-[1000px] mx-auto">
+      <div className="footer-icons flex gap-5 my-10">
         <img className="w-[30px] cursor-pointer" src={youtube_icon} alt="" />
         <img className="w-[30px] cursor-pointer" src={twitter_icon} alt="" />
         <img className="w-[30px] cursor-pointer" src={instagram_icon} alt="" />

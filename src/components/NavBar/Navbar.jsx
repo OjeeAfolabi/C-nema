@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import "./Navbar.css";
-// import logo from "../../public/my-c-nemalogo.png";
 import usericon from "../../public/netflix-usericon.png";
 import caretdown from "../../public/caret_down.svg";
 import { Bell, Search } from "lucide-react";
@@ -30,11 +29,10 @@ const Navbar = () => {
       className="navbar w-full flex justify-between fixed text-[14px] text-[#e5e5e5] z-1 xs:bg-red-500  "
     >
       <div className="flex items-center gap-[50px]">
-        <p className="c-nema text-4xl font-medium bg-linear-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
+        <p className="nav-logo text-4xl font-medium bg-linear-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent border-2 border-green-500">
           C-NEMA
         </p>
-        {/* <img className="w-10" src={logo} alt="" /> */}
-        <ul className="flex list-none gap-5">
+        <ul className="flex list-none gap-5 ul-left">
           <li className="cursor-pointer">Home</li>
           <li className="cursor-pointer">TV Shows</li>
           <li className="cursor-pointer">Movies</li>
@@ -43,7 +41,7 @@ const Navbar = () => {
           <li className="cursor-pointer">Browse by Languages</li>
         </ul>
       </div>
-      <div className="flex gap-5 items-center">
+      <div className="menu-left flex gap-5 items-center">
         <Search />
         <p>Children</p>
         <Bell />

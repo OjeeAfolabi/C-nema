@@ -46,10 +46,10 @@ const TitleCards = ({ title, category }) => {
 
   return (
     <div
-      className=" mt-[50px] mb-[30px]
+      className="title-cards mt-[50px] mb-[30px]
 "
     >
-      <h2 className="mb-2">{title ? title : "Popular on C-Nema"}</h2>
+      <h2 className="mb-2 text-[20px]">{title ? title : "Popular on C-Nema"}</h2>
       <div ref={cardsRef} className="flex gap-2.5 card-list overflow-x-scroll">
         {apiData.map((card, index) => (
           <div
@@ -62,7 +62,7 @@ const TitleCards = ({ title, category }) => {
               src={`https://image.tmdb.org/t/p/w500/` + card.backdrop_path}
               alt=""
             />
-            <p className="absolute bottom-2.5 right-2.5">
+            <p className="absolute bottom-2.5 right-2.5 text-[16px]">
               {card.original_title}
             </p>
           </div>
