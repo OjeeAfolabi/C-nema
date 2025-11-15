@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
-import logo from "../../public/my-c-nemalogo.png";
+// import logo from "../../public/my-c-nemalogo.png";
 import { login, signup } from "../../firebase";
 import spinner from "../../assets/netflix_spinner.gif";
 
@@ -28,9 +28,11 @@ const Login = () => {
     </div>
   ) : (
     <div className="login h-screen bg-[linear-gradient(#0000007e,#0000007e),url('/src/assets/background_banner.jpg')] py-5 px-[8%] ">
-      <img className="w-[100px] xs:w-[10px]  mb-0 " src={logo} alt="" />
-      <div>
-        <form className="login-form w-full max-w-[450px] bg-[rgba(0,0,0,0.75)] rounded-sm p-[50px] m-auto">
+      <p className="inline-block text-4xl font-medium bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent p-5">
+        C-NEMA
+      </p>
+      <div className="login-container flex items-center justify-center mt-8">
+        <form className="login-form w-full max-w-[450px] bg-[rgba(0,0,0,0.75)] rounded-sm p-[50px]">
           <h1 className="text-2xl font-semibold text-white mb-8">
             {signState}
           </h1>
@@ -70,7 +72,7 @@ const Login = () => {
           <button
             type="submit"
             onClick={userAuth}
-            className="w-full p-4 bg-[#e50914] text-white rounded font-semibold mb-6 hover:bg-[#c11119] cursor-pointer"
+            className="w-full p-4 bg-linear-to-r from-blue-500 to-cyan-400 hover:from-blue-400  hover:to-cyan-600  text-white rounded font-semibold mb-6 hover:bg-[#c11119] cursor-pointer"
           >
             {signState}
           </button>
