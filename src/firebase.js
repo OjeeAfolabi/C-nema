@@ -8,13 +8,16 @@ import {
 import { getFirestore, addDoc, collection } from "firebase/firestore";
 import { toast } from "react-toastify";
 
+console.log("apikeyWithVite:", import.meta.env.VITE_APIKEY);
+
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAwXErra7wsAQl00TGqXndzEevFotwuS0U",
-  authDomain: "c-nema-84bd0.firebaseapp.com",
-  projectId: "c-nema-84bd0",
-  storageBucket: "c-nema-84bd0.firebasestorage.app",
-  messagingSenderId: "258020642731",
-  appId: "1:258020642731:web:58ee666ecc24fb30fd0cee",
+  apiKey: `${import.meta.env.VITE_APIKEY}`,
+  authDomain: `${import.meta.env.VITE_AUTHDOMAIN}`,
+  projectId: `${import.meta.env.VITE_PROJECTID}`,
+  storageBucket: `${import.meta.env.VITE_STORAGEBUCKET}`,
+  messagingSenderId: `${import.meta.env.VITE_SENDERID}`,
+  appId: `${import.meta.env.VITE_APPID}`,
 };
 
 const app = initializeApp(firebaseConfig);
